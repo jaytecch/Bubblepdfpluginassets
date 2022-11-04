@@ -1,5 +1,3 @@
-
-
 /**
  * @licstart The following is the entire license notice for the
  * JavaScript code in this page
@@ -22,7 +20,11 @@
  * JavaScript code in this page
  */
 
-/******/ (() => { // webpackBootstrap
+window.addEventListener("pdfViewerReady", loadPdf)
+/******/ 
+function loadPdf ()  {
+
+// webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
 /* 0 */,
@@ -617,7 +619,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   imageResourcesPath: {
-    value: "https://drive.internxt.com/sh/folder/99f3029200b667ceb88f/46c9adc8b46631af7fa1a6a28fb8fc79895a63a6b9786fc0c48bf0b391efd462/",
+    value: "https://cdn.jsdelivr.net/gh/jaytecch/Bubblepdfpluginassets@master/web/images/",
     kind: OptionKind.VIEWER
   },
   maxCanvasPixels: {
@@ -677,7 +679,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: "../web/cmaps/",
+    value: "https://cdn.jsdelivr.net/gh/jaytecch/Bubblepdfpluginassets@master/web/cmaps/",
     kind: OptionKind.API
   },
   disableAutoFetch: {
@@ -725,7 +727,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   standardFontDataUrl: {
-    value: "../web/standard_fonts/",
+    value: "https://cdn.jsdelivr.net/gh/jaytecch/Bubblepdfpluginassets@master/web/standard_fonts/",
     kind: OptionKind.API
   },
   verbosity: {
@@ -737,13 +739,13 @@ const defaultOptions = {
     kind: OptionKind.WORKER
   },
   workerSrc: {
-    value: "https://cdn.jsdelivr.net/gh/jaytecch/Bubblepdfviewerassets@master/build/pdf.worker.js",
+    value: "https://cdn.jsdelivr.net/gh/jaytecch/Bubblepdfpluginassets@master/build/pdf.worker.js",
     kind: OptionKind.WORKER
   }
 };
 {
   defaultOptions.defaultUrl = {
-    value: "compressed.tracemonkey-pldi-09.pdf",
+    value: window.BubblePdfFile,
     kind: OptionKind.VIEWER
   };
   defaultOptions.disablePreferences = {
@@ -759,7 +761,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   };
   defaultOptions.sandboxBundleSrc = {
-    value: "../build/pdf.sandbox.js",
+    value: "https://cdn.jsdelivr.net/gh/jaytecch/Bubblepdfpluginassets@master/build/pdf.sandbox.js",
     kind: OptionKind.VIEWER
   };
 }
@@ -2731,9 +2733,9 @@ exports.PDFViewerApplication = PDFViewerApplication;
         return;
       }
       const fileOrigin = new URL(file, window.location.href).origin;
-      if (fileOrigin !== viewerOrigin) {
+    /*  if (fileOrigin !== viewerOrigin) {
         throw new Error("file origin does not match viewer's");
-      }
+      }*/
     } catch (ex) {
       PDFViewerApplication.l10n.get("loading_error").then(msg => {
         PDFViewerApplication._documentError(msg, {
@@ -3477,7 +3479,7 @@ let pdfjsLib;
 if (typeof window !== "undefined" && window["pdfjs-dist/build/pdf"]) {
   pdfjsLib = window["pdfjs-dist/build/pdf"];
 } else {
-  pdfjsLib = require("../build/pdf.js");
+  pdfjsLib = require("https://cdn.jsdelivr.net/gh/jaytecch/Bubblepdfpluginassets@master/build/pdf.js");
 }
 module.exports = pdfjsLib;
 
@@ -13406,7 +13408,7 @@ window.PDFViewerApplicationOptions = _app_options.AppOptions;
 }
 function getViewerConfiguration() {
   return {
-    appContainer: document.getElementById("pdfBody"),
+    appContainer: window.bubblePdfView,
     mainContainer: document.getElementById("viewerContainer"),
     viewerContainer: document.getElementById("viewer"),
     toolbar: {
@@ -13544,6 +13546,6 @@ if (document.readyState === "interactive" || document.readyState === "complete")
 }
 })();
 
-/******/ })()
+/******/ }
 ;
 //# sourceMappingURL=viewer.js.map

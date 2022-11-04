@@ -1,5 +1,7 @@
 
+window.addEventListener("buildPdfView", buildPdfView)
 
+function buildPdfView(data){
 
 const pdfUiDom = `
     <div id="outerContainer">
@@ -32,7 +34,7 @@ const pdfUiDom = `
               </button>
             </div>
           </div>
-          </div>
+        </div>
         <div id="sidebarContent">
           <div id="thumbnailView">
           </div>
@@ -391,7 +393,20 @@ const pdfUiDom = `
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
-         <input type="file" id="fileInput" class="hidden">
-`
 
-document.getElementById('pdfBody').innerHTML = pdfUiDom
+    <input type="file" id="fileInput" class="hidden">
+    `
+         
+
+document.getElementById(data.detail.viewerId).innerHTML = pdfUiDom
+
+window.bubblePdfViewer = data.detail.viewerId
+
+window.BubblePdfFile = data.detail.pdfFile
+
+
+const pdfViewerReady = new Event("pdfViewerReady")
+  
+  window.dispatchEvent(pdfViewerReady)
+
+}
